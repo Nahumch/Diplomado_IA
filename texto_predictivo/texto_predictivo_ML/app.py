@@ -10,7 +10,7 @@ st.title("🧠 Completador de Texto Predictivo (ML)")
 entrada = st.text_input("Escribe el inicio de una palabra (ej: 'pa'):")
 
 if st.button("🔄 Limpiar entrada"):
-    st.experimental_rerun()
+    st.rerun()
 
 if entrada:
     # Generar features desde la entrada
