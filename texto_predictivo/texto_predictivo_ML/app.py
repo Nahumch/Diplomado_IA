@@ -9,6 +9,9 @@ st.title("🧠 Completador de Texto Predictivo (ML)")
 
 entrada = st.text_input("Escribe el inicio de una palabra (ej: 'pa'):")
 
+if st.button("🔄 Limpiar entrada"):
+    st.experimental_rerun()
+
 if entrada:
     # Generar features desde la entrada
     entrada_vect = vectorizer.transform([entrada])
@@ -21,5 +24,6 @@ if entrada:
     top_palabras = [model.classes_[i] for i in top_indices]
 
     st.subheader("🔮 Sugerencias:")
-    for palabra in top_palabras:
-        st.write(f"- {palabra}")
+    for i, palabra in enumerate(top_palabras):
+        probabilidad = proba[top_indices[i]] * 100
+        st.write(f"- {palabra} ({probabilidad:.1f}%)")
